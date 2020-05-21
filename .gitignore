@@ -1,0 +1,6 @@
+.vscode
+vscode/
+appsettings.json
+Debug/
+obj/
+*.cache
