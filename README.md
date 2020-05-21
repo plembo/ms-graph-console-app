@@ -3,8 +3,7 @@ From "Build Apps with Microsoft Graph -- Associate" learning path.
 
 https://docs.microsoft.com/en-us/learn/paths/m365-msgraph-associate/
 
-An Azure AD web application written in C# to run in .NET Core that queries
-the Microsoft Graph for user information.
+A .NET Core console app in C# to query the Microsoft Graph for user information.
 
 URL for complete lab:
 
