@@ -77,19 +77,16 @@ namespace graphconsoleapp
             var client = GetAuthenticatedGraphClient(config);
 
             // var graphRequest = client.Users.Request();
-            var graphRequest = client.Users
-                    .Request()
-                    .Select(u => new { u.DisplayName, u.Mail })
-                    // .Top(15)
-                    // .OrderBy("DisplayName desc");
-                    .Filter("startsWith(givenname, 'A') or startsWith(givenname, 'B') or startsWith(givenname, 'C')");
-
+            var graphRequest = client.Groups.Request().Top(5).Expand("members");
             var results = graphRequest.GetAsync().Result;
-            foreach(var user in results)
-            {           
-                Console.WriteLine(user.Id + ": " + user.DisplayName + " <" + user.Mail + ">");
+            foreach(var group in results)
+            {
+                Console.WriteLine(group.Id + ": " + group.DisplayName);
+                foreach(var member in group.Members)
+                {
+                    Console.WriteLine("  " + member.Id + ": " + ((Microsoft.Graph.User)member).DisplayName);
+                }
             }
-
             Console.WriteLine("\nGraph Request:");
             Console.WriteLine(graphRequest.GetHttpRequestMessage().RequestUri);
         }
